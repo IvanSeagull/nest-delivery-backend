@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { usersService } from "./user.service";
 
 @Controller('users')
@@ -14,5 +14,10 @@ export class UserController {
         else{
             return {msg: "Passwords dont match"}
         }
+    }
+
+    @Get(':id')
+    getUserData(@Param('id') userId: number){
+        return this.userService.getUserData(userId)
     }
 }
